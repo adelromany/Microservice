@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "adelromany/micreoservices-${pwd().getName()}"
+        IMAGE_NAME = "adelromany/micreoservices-${env.GIT_BRANCH.replaceFirst('refs/heads/', '')}"
         TIMESTAMP = "${new Date().format('yyyyMMdd')}"
     }
 
