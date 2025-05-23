@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "adelromany/micreoservices-${pwd().getName()}"
+        IMAGE_NAME = "adelromany/micreoservices-${env.GIT_BRANCH.replaceFirst('refs/heads/', '')}"
         TIMESTAMP = "${new Date().format('yyyyMMdd')}"
     }
 
@@ -12,9 +12,9 @@ pipeline {
                 script {
                     def fullTag = "${env.IMAGE_NAME}:${env.TIMESTAMP}"
                     withDockerRegistry(credentialsId: 'dockercred', toolName: 'docker') {
-                        sh "docker build -t ${fullTag} cartservice/src"
+                        sh "docker build -t ${fullTag} cartservice/src/Dockerfile"
                     }
-                env.IMAGE_NAME=fullTag
+                env.FULL_TAG = fullTag
                 }
             }
         }
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'dockercred', toolName: 'docker') {
-                        sh "docker push ${env.IMAGE_NAME}"
+                        sh "docker push ${env.FULL_TAG}"
                     }
                 }
             }
