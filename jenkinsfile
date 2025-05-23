@@ -14,7 +14,7 @@ pipeline {
                     withDockerRegistry(credentialsId: 'dockercred', toolName: 'docker') {
                         sh "docker build -t ${fullTag} ."
                     }
-                env.IMAGE_NAME=fullTag
+                env.FULL_TAG = fullTag
                 }
             }
         }
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'dockercred', toolName: 'docker') {
-                        sh "docker push ${env.IMAGE_NAME}"
+                        sh "docker push ${env.FULL_TAG}"
                     }
                 }
             }
