@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "adelromany/micreoservices-${pwd().getName()}"
+        TIMESTAMP = "${new Date().format('yyyyMMdd')}"
+    }
+
+    stages {
+        stage('Build and Tag Docker Image') {
+            steps {
+                script {
+                    def fullTag = "${env.IMAGE_NAME}:${env.TIMESTAMP}"
+                    withDockerRegistry(credentialsId: 'dockercred', toolName: 'docker') {
+                        sh "docker build -t ${fullTag} cartservice/src"
+                    }
+                env.IMAGE_NAME=fullTag
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: 'dockercred', toolName: 'docker') {
+                        sh "docker push ${env.IMAGE_NAME}"
+                    }
+                }
+            }
+        }
+    }
+}
