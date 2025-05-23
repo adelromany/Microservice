@@ -1,1 +1,5 @@
-# AWS Microservices CI/CD Pipeline Project
+# frontend
+
+Run the following command to restore dependencies to `vendor/` directory:
+
+    dep ensure --vendor-only
