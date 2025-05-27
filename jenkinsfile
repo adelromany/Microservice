@@ -6,20 +6,14 @@ pipeline {
         TIMESTAMP = "${new Date().format('yyyyMMdd')}"
     }
 
-    stages {
-        stage('PWD') {
-            steps {
-                script {
-                        sh "pwd"
-                }
-            }
-        }        
+    stages {       
         stage('Build and Tag Docker Image') {
             steps {
                 script {
+                        sh "pwd"
                     def fullTag = "${env.IMAGE_NAME}:${env.TIMESTAMP}"
                     withDockerRegistry(credentialsId: 'dockercred', toolName: 'docker') {
-                        sh "docker build -t ${fullTag} -f cartservice/src/Dockerfile ."
+                        sh "docker build -t ${fullTag} -f src/Dockerfile ."
                     }
                 env.FULL_TAG = fullTag
                 }
