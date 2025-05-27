@@ -19,7 +19,7 @@ pipeline {
                 script {
                     def fullTag = "${env.IMAGE_NAME}:${env.TIMESTAMP}"
                     withDockerRegistry(credentialsId: 'dockercred', toolName: 'docker') {
-                        sh "docker build -t ${fullTag} -f src/Dockerfile"
+                        sh "docker build -t ${fullTag} -f cartservice/src/Dockerfile ."
                     }
                 env.FULL_TAG = fullTag
                 }
