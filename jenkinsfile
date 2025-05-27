@@ -7,6 +7,13 @@ pipeline {
     }
 
     stages {
+        stage('PWD') {
+            steps {
+                script {
+                        sh "pwd"
+                }
+            }
+        }        
         stage('Build and Tag Docker Image') {
             steps {
                 script {
