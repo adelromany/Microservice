@@ -30,7 +30,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: adelroman/microservices-adservice:latest
+        image: adelromany/micreoservices-adservice:20250523
         ports:
         - containerPort: 9555
         env:
