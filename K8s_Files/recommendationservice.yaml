@@ -30,7 +30,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: adelromany/micreoservices-recommendationservice:latest
+        image: adelromany/micreoservices-recommendationservice:20250527
         ports:
         - containerPort: 8080
         readinessProbe:
