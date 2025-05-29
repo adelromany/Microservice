@@ -29,7 +29,7 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: adelroamny/checkoutservice:latest
+          image: adelromany/micreoservices-checkoutservice:20250527
           ports:
           - containerPort: 5050
           readinessProbe:
