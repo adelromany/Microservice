@@ -50,7 +50,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: adelromany/micreoservices-emailservice:20250221
+        image: adelromany/micreoservices-emailservice:20250523
         ports:
         - containerPort: 8080
         env:
