@@ -36,7 +36,7 @@ This project implements a production-grade CI/CD pipeline for microservices with
 
 ```mermaid
 graph TD
-    A[Jenkins CI Server] -->|Triggers| B[Git Repository]
+    A[Jenkins] -->|WebhookTriggers| B[Git Repository]
     A -->|Builds/Pushes| C[Docker Hub]
     B --> D[Branch-per-service]
     C --> E[Versioned Container Images]
